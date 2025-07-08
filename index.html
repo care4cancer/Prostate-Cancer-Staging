@@ -7,38 +7,40 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      background-color: #f8f9fa;
+      color: #333;
       padding: 20px;
       line-height: 1.6;
     }
     .container {
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: #ffffff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
     h1, h2 {
       text-align: center;
+      color: #c2185b;
     }
     label {
       display: block;
       margin-top: 15px;
+      font-weight: bold;
     }
     input, select {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       margin-top: 5px;
       border-radius: 6px;
-      border: none;
+      border: 1px solid #ccc;
       font-size: 16px;
     }
     button {
-      background-color: #1e88e5;
+      background-color: #c2185b;
       color: white;
-      padding: 10px 20px;
+      padding: 12px;
       margin-top: 20px;
       border: none;
       border-radius: 6px;
@@ -46,11 +48,24 @@
       font-size: 16px;
       width: 100%;
     }
-    .result, .education {
+    .section {
       margin-top: 30px;
       padding: 20px;
-      background-color: rgba(255,255,255,0.1);
+      background-color: #fce4ec;
       border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f8bbd0;
     }
   </style>
 </head>
@@ -93,16 +108,73 @@
 
     <button onclick="calculateStage()">Calculate Stage</button>
 
-    <div class="result" id="result"></div>
+    <div class="section" id="result"></div>
 
-    <div class="education">
-      <h2>Understanding the Staging</h2>
+    <div class="section">
+      <h2>Understanding Stage Grouping</h2>
       <ul>
-        <li><strong>Stage I:</strong> PSA < 10, Gleason ≤ 6, T1-T2a, N0, M0</li>
+        <li><strong>Stage I:</strong> PSA < 10, Gleason ≤ 6, T1–T2a, N0, M0</li>
         <li><strong>Stage II:</strong> PSA 10–20, Gleason 7, T2b–T2c, N0, M0</li>
         <li><strong>Stage III:</strong> PSA > 20 or T3, any Gleason, N0, M0</li>
         <li><strong>Stage IV:</strong> Any T, Any Gleason, N1 or M1</li>
       </ul>
+    </div>
+
+    <div class="section">
+      <h2>T Stage Explanation</h2>
+      <table>
+        <tr>
+          <th>Stage</th>
+          <th>Description</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td><strong>T1</strong></td>
+          <td>Not felt or seen on imaging</td>
+          <td>T1a: ≤5% of BPH tissue<br/>T1b: >5% of BPH tissue<br/>T1c: Detected by PSA biopsy</td>
+        </tr>
+        <tr>
+          <td><strong>T2</strong></td>
+          <td>Confined within prostate</td>
+          <td>T2a: ≤50% of one lobe<br/>T2b: >50% of one lobe<br/>T2c: Both lobes involved</td>
+        </tr>
+        <tr>
+          <td><strong>T3</strong></td>
+          <td>Extends outside the prostate</td>
+          <td>T3a: Capsule breached<br/>T3b: Seminal vesicle invasion</td>
+        </tr>
+        <tr>
+          <td><strong>T4</strong></td>
+          <td>Invasion of adjacent organs</td>
+          <td>Bladder, rectum, pelvic wall, etc.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Tests Used to Determine T Stage</h2>
+      <ul>
+        <li><strong>Digital Rectal Exam (DRE):</strong> May detect abnormalities if tumor is palpable</li>
+        <li><strong>Multiparametric MRI (mpMRI):</strong> 🔍 Best tool for local staging:
+          <ul>
+            <li>Detects extracapsular extension (T3a)</li>
+            <li>Seminal vesicle invasion (T3b)</li>
+            <li>Organ invasion (T4)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Role of PSMA PET-CT in Staging</h2>
+      <p><strong>PSMA PET-CT is not used to evaluate T stage</strong> but plays a vital role in staging overall prostate cancer:</p>
+      <ul>
+        <li><strong>N Staging:</strong> Detects small lymph node metastases missed on CT or MRI</li>
+        <li><strong>M Staging:</strong> Highly sensitive for bone, lung, and liver metastasis (M1a/M1b/M1c)</li>
+        <li><strong>Restaging:</strong> Useful in recurrent prostate cancer with very low PSA</li>
+        <li><strong>Treatment Planning:</strong> Helps decide whether surgery or systemic therapy is appropriate</li>
+      </ul>
+      <p><strong>Note:</strong> mpMRI is required to assess the local extent of the primary tumor (T stage).</p>
     </div>
   </div>
 
