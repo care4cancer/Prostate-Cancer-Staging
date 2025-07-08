@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prostate Cancer Staging Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #1e88e5;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    .result, .education {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prostate Cancer Staging Calculator</h1>
+    <p>Estimate the stage of prostate cancer using clinical indicators.</p>
+
+    <label for="psa">PSA Level (ng/mL):</label>
+    <input type="number" id="psa" />
+
+    <label for="gleason">Gleason Score:</label>
+    <select id="gleason">
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+
+    <label for="tStage">T Stage:</label>
+    <select id="tStage">
+      <option value="T1">T1</option>
+      <option value="T2">T2</option>
+      <option value="T3">T3</option>
+      <option value="T4">T4</option>
+    </select>
+
+    <label for="nStage">N Stage:</label>
+    <select id="nStage">
+      <option value="N0">N0 (No lymph node involvement)</option>
+      <option value="N1">N1 (Lymph node involvement)</option>
+    </select>
+
+    <label for="mStage">M Stage:</label>
+    <select id="mStage">
+      <option value="M0">M0 (No metastasis)</option>
+      <option value="M1">M1 (Distant metastasis)</option>
+    </select>
+
+    <button onclick="calculateStage()">Calculate Stage</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="education">
+      <h2>Understanding the Staging</h2>
+      <ul>
+        <li><strong>Stage I:</strong> PSA < 10, Gleason ≤ 6, T1-T2a, N0, M0</li>
+        <li><strong>Stage II:</strong> PSA 10–20, Gleason 7, T2b–T2c, N0, M0</li>
+        <li><strong>Stage III:</strong> PSA > 20 or T3, any Gleason, N0, M0</li>
+        <li><strong>Stage IV:</strong> Any T, Any Gleason, N1 or M1</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function calculateStage() {
+      const psa = parseFloat(document.getElementById('psa').value);
+      const gleason = parseInt(document.getElementById('gleason').value);
+      const tStage = document.getElementById('tStage').value;
+      const nStage = document.getElementById('nStage').value;
+      const mStage = document.getElementById('mStage').value;
+
+      let stage = '';
+
+      if (mStage === 'M1' || nStage === 'N1') {
+        stage = 'Stage IV';
+      } else if (psa > 20 || tStage === 'T3' || tStage === 'T4') {
+        stage = 'Stage III';
+      } else if ((psa >= 10 && psa <= 20) || gleason === 7 || tStage === 'T2') {
+        stage = 'Stage II';
+      } else {
+        stage = 'Stage I';
+      }
+
+      document.getElementById('result').innerHTML = `<h2>Result: ${stage}</h2><p>This stage estimate is based on NCCN guidelines and clinical patterns. Always confirm with a specialist.</p>`;
+    }
+  </script>
+</body>
+</html>
